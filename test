@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+    <head>        
+        <title>Kamm Herein Friseursalon - Gallerie</title>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <script type="text/javascript" src="library/jquery/jquery-3.2.1.slim.min.js"></script>
+        <script src="library/bootstrap/js/bootstrap.min.js"></script>
+        <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <style type="text/css">
+            body {
+                background-color: darkgray;
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+                font-weight: 300;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .navbar-brand {
+                font-size: 2em;
+            }
+
+            .marginTop {
+                margin-top: 30px;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            #comment {
+                height: 150px;
+            }
+            
+            .active a{
+                color: white !important;
+                background-color: darkgray !important;
+            }
+
+            /* image resizing for mobile devices */
+            img {
+                width: 250px;
+                height: auto;
+            }
+
+            /* sm */
+            @media (min-width: 768px) {
+                img {
+                    width: 300px;
+                }
+            }
+
+            /* md */
+            @media (min-width: 992px) {
+                img {
+                    width: 350px;
+                }
+            }
+            
+            /* lg */
+            @media (min-width: 1200px) {
+                img {
+                    width: 400px;
+                }
+            }
+            
+            table {   
+                /* border: 1px solid black; */
+                /*border-collapse: collapse;*/
+                border-spacing: 1px;
+                /*width: 100%;*/   
+                background-color: white;
+                align-items: center;
+            }
+
+            th {
+                /* border: 1px solid black; */
+                /*border-collapse: collapse;*/
+                text-align: left;
+                padding: 15px;
+            }
+
+            td {
+                /* border: 1px solid black; */
+                /*border-collapse: collapse;*/
+                text-align: left;
+                padding: 15px;
+                background-color: lightgray;
+            }
+            
+            /* Style the footer */
+            .footer {
+                background-color: gray;
+                padding: 10px;
+                text-align: center;
+            }
+        </style>        
+    </head>
+    <body>         
+<img src="images/pic1.jpg" alt="pic1" width="300" height="200"></td>
+                <td><img src="images/pic2.jpg" alt="pic2" width="300" height="200"></td>
+                <td><img src="images/pic3.jpg" alt="pic3" width="300" height="200"></td>
+                <td><img src="images/pic4.jpg" alt="pic4" width="300" height="200"></td>
+            </tr>        
+        </table>
+        
+        <div class="footer">
+          <p>&copy; 2017 kammherein.at</p>
+        </div>
+    </body> 
+</html>
+

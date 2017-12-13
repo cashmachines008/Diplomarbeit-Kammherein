@@ -1,109 +1,569 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Willkommen auf unserem Homepage!</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-    box-sizing: border-box;
-}
+<!doctype html>
+<html>
+    <head>        
+        <title>Kamm Herein Friseursalon - Preisliste</title>
 
-body {
-  margin: 0;
-}
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-/* Style the header */
-.header {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
-}
+        <script type="text/javascript" src="library/jquery/jquery-3.2.1.slim.min.js"></script>
+        <script src="library/bootstrap/js/bootstrap.min.js"></script>
+        <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden;
-    background-color: #333;
-}
+        <style type="text/css">
+            body {
+                background-color: darkgray;
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+                font-weight: 300;
+            }
 
-/* Style the topnav links */
-.topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+            .navbar-brand {
+                font-size: 2em;
+            }
 
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
+            .center {
+                text-align: center;
+            }
 
-/* Create three unequal columns that floats next to each other */
-.column {
-    float: left;
-    padding: 10px;
-}
+            .marginTop {
+                margin-top: 30px;
+            }
 
-/* Left and right column */
-.column.side {
-    width: 25%;
-}
+            textarea {
+                resize: none;
+            }
 
-/* Middle column */
-.column.middle {
-    width: 50%;
-}
+            #comment {
+                height: 150px;
+            }
+            
+            .active a {
+                color: white !important;
+                background-color: darkgray !important;
+            }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+            table {   
+                /*border: 1px solid black;*/
+                /*border-collapse: collapse;*/
+                border-spacing: 1px;
+                /*width: 100%;*/   
+                background-color: white;
+                align-items: center;
+            }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-    .column.side, .column.middle {
-        width: 100%;
-    }
-}
+            th {
+                /*border: 1px solid black;*/
+                /*border-collapse: collapse;*/
+                text-align: left;
+                padding: 15px;
+            }
 
-/* Style the footer */
-.footer {
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-}
-</style>
-</head>
-<body>
+            td {
+                /*border: 1px solid black;*/
+                /*border-collapse: collapse;*/
+                text-align: left;
+                padding: 15px;
+                background-color: lightgray;
+            }
+            
+            .preislisteBtn {
+                background-color: lightgray;
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
 
-<div class="header">
-  <h1>Kammherein</h1>
-     <!--p>Resize the browser window to see the responsive effect.</p-->
-</div>
+            .preisliste {
+                position: relative;
+                display: inline-block;
+            }
 
-<div class="topnav">
-    <a href="home.html">Home</a>
-    <a href="galerie.html">Galerie</a>
-    <a href="aktuelles.html">Aktuelles</a>
-    <a href="preisliste.html">Preisliste</a>
-    <a href="kontakte.html">Kontakte</a>
-    <a href="terminvereinbarung.html">Terminvereinbarung</a>
-    <a href="frisur_konfigurator.html">Frisur Konfigurator</a>
-    <a href="registrieren.html">Registrieren</a>
-    <a href="login.html">Login</a>   
-</div>
+            .preisliste-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
 
-<img src="design_preisliste.PNG">
+            .preisliste-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
 
-<div class="footer">
-  <p>&copy; 2018 kammherein.at</p>
-</div>
-  
-</body>
+            .preisliste-content a:hover {
+                background-color: lightgray;
+            }
+
+            .preisliste:hover .preisliste-content {
+                display: block;
+            }
+
+            .preisliste:hover .dropbtn {
+                background-color: #3e8e41;
+            }
+
+            /* image resizing for mobile devices */
+            img {
+                width: 250px;
+                height: auto;
+            }
+            
+            /* sm */
+            @media (min-width: 768px) {
+                img {
+                    width: 300px;
+                }
+            }
+
+            /* md */
+            @media (min-width: 992px) {
+                img {
+                    width: 350px;
+                }
+            }
+
+            /* lg */
+            @media (min-width: 1200px) {
+                img {
+                    width: 400px;
+                }
+            }
+            
+            /* Style the footer */
+            .footer {
+                background-color: gray;
+                padding: 10px;
+                text-align: center;
+            }
+            
+            /* Full-width input fields */
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+            /* Set a style for all buttons */
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+            /* Extra styles for the cancel button */
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+            }
+
+            /* Center the image and position the close button */
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+                position: relative;
+            }
+
+            img.avatar {
+                width: 40%;
+                border-radius: 50%;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                padding-top: 60px;
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+            }
+
+            /* The Close Button (x) */
+            .close {
+                position: absolute;
+                right: 25px;
+                top: 0;
+                color: #000;
+                font-size: 35px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: red;
+                cursor: pointer;
+            }
+
+            /* Add Zoom Animation */
+            .animate {
+                -webkit-animation: animatezoom 0.6s;
+                animation: animatezoom 0.6s
+            }
+
+            @-webkit-keyframes animatezoom {
+                from {-webkit-transform: scale(0)} 
+                to {-webkit-transform: scale(1)}
+            }
+
+            @keyframes animatezoom {
+                from {transform: scale(0)} 
+                to {transform: scale(1)}
+            }
+
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                   display: block;
+                   float: none;
+                }
+                .cancelbtn {
+                   width: 100%;
+                }
+            }
+            
+        </style>        
+    </head>
+    <body>         
+        <div class="container center" style="margin-top: 20px; margin-bottom: 20px">
+            <img style="max-height:150px;" src="images/logo_black_small.png">
+        </div>
+
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="glyphicon glyphicon-menu-hamburger" style="font-size: 1.2em"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Home</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav center">
+                        <li><a href="gallerie.html">Gallerie</a></li>
+                        <li><a href="preisliste.html">Preisliste</a></li>
+                        <li><a href="aktuelles.html">Aktuelles</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                        <li><a href="terminvereinbarung.php">Terminvereinbarung</a></li>
+                        <li><a href="frisur_konfigurator.html">Frisur Konfigurator</a></li>
+                        <li><a href="registrieren.html">Registrieren</a></li>
+                        <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="id01" class="modal">
+              <form class="modal-content animate" action="/action_page.php">
+                <div class="imgcontainer">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                  <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                  <label><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required>
+
+                  <label><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required>
+
+                  <button type="submit">Login</button>
+                  <input type="checkbox" checked="checked"> Remember me
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+              </form>
+        </div>
+
+        <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+        
+        <table align="center">
+            <caption>
+                <div class="preisliste">
+                    <button class="preislisteBtn">Preisliste</button>
+                    <div class="preisliste-content">
+                        <a href="#preisliste-damen">Damen</a>
+                        <a href="#preisliste-umformungen-perms">Umformungen/Perms</a>
+                        <a href="#preisliste-faerben-color">Färben/Color</a>
+                        <a href="#preisliste-kombiangebote">Kombiangebote</a>
+                        <a href="#preisliste-herren">Herren</a>     
+                        <a href="#preisliste-kinder">Kinder</a>
+                        <a href="#preisliste-extra-service">Extra Service</a>
+                        <a href="#preisliste-facial">Facial</a>
+                        <a href="#preisliste-eyelash">Eyelash</a>
+                        <a href="#preisliste-nails">Nails</a>
+                  </div>
+                </div>
+            </caption>
+            <tr>
+                <th id="preisliste-damen">Damen</th>
+                <th>Kurz</th>
+                <th>Mittel</th>
+                <th>Lang</th>
+            </tr>                
+            <tr>
+                <td>Waschen, Schneiden, Fönen inkl. Produkte</td>
+                <td>€ 25</td>
+                <td>€ 30</td>
+                <td>€ 35</td>
+            </tr>
+            <tr>
+                <td>Waschen, Fönen/Legen inkl. Produkte</td>
+                <td>€ 22</td>
+                <td>€ 25</td>
+                <td>€ 28</td>
+            </tr>
+            <tr>
+                <td>Trockenschnitt</td>
+                <td colspan="3">ab € 10</td>
+            </tr>
+            <tr>
+                <td>Keraphlex Treatment (Haarsauna)</td>
+                <td colspan="3">ab € 35</td>
+            </tr>
+             <tr>
+                <th id="preisliste-umformungen-perms" colspan="4">Umformungen/Perms<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>                
+            <tr>
+                <td>Chemische Glättung für ca. 6 – 12 Monaten</td>
+                <td colspan="3">ab € 50</td>
+            </tr>                    
+            <tr>
+                <td>Permanente Umformung für ca. 12 Wochen </td>
+                <td colspan="3">ab € 30</td>
+            </tr>
+            <tr>
+                <td>Ansatzvolumen mit Krepptechnik für ca. 12 Wochen</td>
+                <td colspan="3">ab € 30</td>
+            </tr>
+            <tr>
+                <th id="preisliste-faerben-color" colspan="4">Färben/Color<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>                
+            <tr>
+                <td>Ansatzfärbung (bis max. 2 cm Ansatz)</td>
+                <td colspan="3">ab € 30</td>
+            </tr>                    
+            <tr>
+                <td>Foliensträhnen </td>
+                <td colspan="3">ab € 20</td>
+            </tr>
+            <tr>
+                <td>Farbmechen </td>
+                <td colspan="3" colspan="3">ab € 30</td>
+            </tr>
+            <tr>
+                <td>Sombre / Ombre 2 – 3 färbig</td>
+                <td colspan="3">ab € 40</td>
+            </tr>
+             <tr>
+                <th id="preisliste-kombiangebote" colspan="4">Kombiangebote<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>                
+            <tr>
+                <td>Farbe + Waschen, schneiden, fönen</td>
+                <td colspan="3">ab € 45</td>
+            </tr>                    
+            <tr>
+                <td>Strähnen + Tönung + Waschen, schneiden, fönen</td>
+                <td colspan="3">ab € 45</td>
+            </tr>
+            <tr>
+                <td>Chemische Glättung für ca. 26 Wochen inkl. Schneiden</td>
+                <td colspan="3">ab € 60</td>
+            </tr>
+            <tr>
+                <td>Permanente Umformung für ca. 12 Wochen inkl. Schneiden</td>
+                <td colspan="3">ab € 60</td>
+            </tr>
+            <tr>
+                <td>Ansatzvolumen mit Krepptechnik für ca. 12 Wochen inkl. Schneiden</td>
+                <td colspan="3">ab € 60</td>
+            </tr>
+            <tr>
+                <th id="preisliste-herren" colspan="4">Herren<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>                
+            <tr>
+                <td>Herrenmodeschnitt (Maschine und Schere) ohne Waschen</td>
+                <td colspan="3">€ 12</td>
+            </tr>                    
+            <tr>
+                <td>Maschinenschnitt ohne Waschen</td>
+                <td colspan="3">€ 10</td>
+            </tr>
+            <tr>
+                <td>Herrenservice (waschen, schneiden, fönen)</td>
+                <td colspan="3">€ 17</td>
+            </tr>
+            <tr>
+                <td>Bart stutzen mit Maschine</td>
+                <td colspan="3">€ 15</td>
+            </tr>
+            <tr>
+                <th id="preisliste-kinder" colspan="4">Kinder<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>             
+            <tr>                
+                <td>Kinderhaarschnitt (trocken) bis 14</td>
+                <td colspan="3">€ 10</td>
+            </tr>                    
+            <tr>
+                <td>Jugendliche </td>
+                <td colspan="3">ab € 10</td>
+            </tr>
+            <tr>
+                <th id="preisliste-extra-service" colspan="4">Extra Service<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>
+            <tr>
+                <td>Augenbrauen / Wimpern färben</td>
+                <td colspan="3">€ 5/7</td>
+            </tr>                    
+            <tr>
+                <td>Augenbrauen wachsen (Warmwachs)</td>
+                <td colspan="3">€ 5</td>
+            </tr>
+            <tr>
+                <td>Eyelash Lifting (Wimpernwelle) + Wimpern färben</td>
+                <td colspan="3">€ 25</td>
+            </tr>
+            <tr>
+                <td>Oberlippenhärchen wachsen (Warmwachs)</td>
+                <td colspan="3">€ 3</td>
+            </tr>
+            <tr>
+                <th id="preisliste-facial" colspan="4">Facial<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>
+            <tr>
+                <td>Klassische Gesichtsbehandlung (Reinigung, Peeling, Maske) 30 min</td>
+                <td colspan="3">€ 25</td>
+            </tr>                    
+            <tr>
+                <td>Luxus Gesichtsbehandlung (Reinigung, Peeling, Maske) 45 min</td>
+                <td colspan="3">€ 35</td>
+            </tr>
+            <tr>
+                <th id="preisliste-eyelash" colspan="4">Eyelash<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>
+            <tr>
+                <td>1 D Lash Neu Set</td>
+                <td colspan="3">€ 60</td>
+            </tr>
+            <tr>
+                <td>Refill bis 2 Wochen</td>
+                <td colspan="3">€ 30</td>
+            </tr>
+            <tr>
+                <td>Refill bis 3 Wochen</td>
+                <td colspan="3">€ 35</td>
+            </tr>
+            <tr>
+                <td>Refill bis 4 Wochen</td>
+                <td colspan="3">€ 40</td>
+            </tr>
+            <tr>
+                <td>Volumenlashes Neuset</td>
+                <td colspan="3">€ 80</td>
+            </tr>
+            <tr>
+                <td>Refill bis 2 Wochen</td>
+                <td colspan="3">€ 40</td>
+            </tr>
+            <tr>
+                <td>Refill bis 3 Wochen</td>
+                <td colspan="3">€ 50</td>
+            </tr>
+            <tr>
+                <td>Refill bis 4 Wochen</td>
+                <td colspan="3">€ 60</td>
+            </tr>
+            <tr>
+                <th id="preisliste-nails" colspan="4">Nails<a href="#top"><span style="float: right;">nach oben</span></a></th>
+            </tr>
+            <tr>
+                <td>Nageldesign Neu Set Acryl / Gel inkl. 2 Muster</td>
+                <td colspan="3">€ 35</td>
+            </tr>
+            <tr>
+                <td>Nageldesign Nachfüllung Acryl / Gel inkl. 2 Muster</td>
+                <td colspan="3">€ 30</td>
+            </tr>
+            <tr>
+                <td>Fremdmodellage entfernen</td>
+                <td colspan="3">€ 15</td>
+            </tr>
+            <tr>
+                <td>Nagelreparatur pro Nagel</td>
+                <td colspan="3">€ 3</td>
+            </tr>
+            <tr>
+                <td>Klassische Maniküre ohne Lack</td>
+                <td colspan="3">€ 15</td>
+            </tr>
+            <tr>
+                <td>Klassische Maniküre mit Lac & Go / Strip Me</td>
+                <td colspan="3">€ 20</td>
+            </tr>
+            <tr>
+                <td>Nailstrass</td>
+                <td colspan="3">ab € 0,50</td>
+            </tr>    
+            <tr>
+                <th colspan="4">*Alle Angaben sind ohne Gewähr, Änderungen vorbehalten.</th>
+            </tr> 
+        </table>
+        
+        <div class="footer">
+          <p>&copy; 2017 kammherein.at</p>
+        </div>
+    </body> 
 </html>
+
